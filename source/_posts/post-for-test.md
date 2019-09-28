@@ -54,7 +54,7 @@ int main() {
 | $\alpha = \sum_i^n \frac{1}{i}$ | $\alpha = \sum_i^n \frac{1}{i}$     | $\alpha = \sum_i^n \frac{1}{i}$    |
 | text | 4     | 5    |
 
-# Title
+# H1
 
 ## H2
 
