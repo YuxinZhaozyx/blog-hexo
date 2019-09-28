@@ -4,7 +4,7 @@ tags: ["PR", "ROC", "AUC", "EER", "AP", "mAP", "F1-measure"]
 categories: ["machine-learning"]
 reward: true
 copyright: true
-date: 2019-09-28 11:44:28
+date: 2019-07-15 21:05:58
 thumbnail:
 ---
 
