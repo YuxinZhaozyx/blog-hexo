@@ -1,6 +1,6 @@
 ---
 title: What is RoI
-tags: ["RoI"]
+tags: ["RoI","metric"]
 categories: ["machine-learning"]
 reward: true
 copyright: true

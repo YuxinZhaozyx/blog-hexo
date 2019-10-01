@@ -1,11 +1,11 @@
 ---
 title: What is RoI pooling
-tags: ["RoI", "pooling"]
+tags: ["RoI", "pooling", "metric"]
 categories: ["machine-learning"]
 reward: true
 copyright: true
 date: 2019-07-15 11:52:13
-thumbnail: /static/image/what-is-RoI-pooling.png
+thumbnail: 
 ---
 
 

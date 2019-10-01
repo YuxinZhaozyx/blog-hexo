@@ -1,6 +1,6 @@
 ---
 title: NMS / soft-NMS / softer-NMS
-tags: ["NMS", "soft-NMS", "softer-NMS"]
+tags: ["NMS", "soft-NMS", "softer-NMS", "metric"]
 categories: ["machine-learning"]
 reward: true
 copyright: true

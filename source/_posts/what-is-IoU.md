@@ -1,6 +1,6 @@
 ---
 title: What is IoU
-tags: ["IoU"]
+tags: ["IoU", "metric"]
 categories: ["machine-learning"]
 reward: true
 copyright: true

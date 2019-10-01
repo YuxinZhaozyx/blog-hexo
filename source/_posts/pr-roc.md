@@ -1,6 +1,6 @@
 ---
 title: PR/ROC曲线及其相关性能评价指标
-tags: ["PR", "ROC", "AUC", "EER", "AP", "mAP", "F1-measure"]
+tags: ["PR", "ROC", "AUC", "EER", "AP", "mAP", "F1-measure", "metric"]
 categories: ["machine-learning"]
 reward: true
 copyright: true

@@ -1,5 +1,16 @@
 ---
 title: {{ title }}
 date: {{ date }}
-tags:
+tags: []
+categories: [] 
+reward: true
+copyright: true
+thumbnail:
+
 ---
+
+
+
+
+
+<!--more-->

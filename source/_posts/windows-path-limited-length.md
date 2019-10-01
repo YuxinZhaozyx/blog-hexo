@@ -1,6 +1,6 @@
 ---
 title: Windows PATH 长度限制最多2047个字符
-tags: ["path"]
+tags: ["path", "error"]
 categories: ["windows"]
 reward: true
 copyright: true
