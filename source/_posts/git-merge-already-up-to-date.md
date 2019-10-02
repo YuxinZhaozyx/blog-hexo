@@ -1,7 +1,7 @@
 ---
 title: git merge命令提示Already up to date
-tags: ["error"]
-categories: ["git"]
+tags: ["git", "error"]
+categories: ["tools"]
 reward: true
 copyright: true
 date: 2019-07-09 14:45:33

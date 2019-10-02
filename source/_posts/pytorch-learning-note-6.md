@@ -1,7 +1,7 @@
 ---
 title: "[PyTorch学习笔记] 数据的加载和预处理"
 tags: ["pytorch"]
-categories: ["deep-learning-framework"]
+categories: ["machine-learning"]
 reward: true
 copyright: true
 date: 2019-07-23 17:20:42

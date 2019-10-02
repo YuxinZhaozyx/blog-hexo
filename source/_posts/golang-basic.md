@@ -1,5 +1,5 @@
 ---
-title: golang基础
+title: Golang基础
 tags: ["golang"]
 categories: ["programming-language"]
 reward: true

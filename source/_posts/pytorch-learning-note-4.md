@@ -1,7 +1,7 @@
 ---
 title: "[PyTorch学习笔记] Training A Classifier"
 tags: ["pytorch"]
-categories: ["deep-learning-framework"]
+categories: ["machine-learning"]
 reward: true
 copyright: true
 date: 2019-07-23 09:40:02

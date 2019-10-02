@@ -1,7 +1,7 @@
 ---
 title: "[PyTorch学习笔记] AUTOGRAD: Automatic Differentiation"
 tags: ["pytorch"]
-categories: ["deep-learning-framework"]
+categories: ["machine-learning"]
 reward: true
 copyright: true
 date: 2019-07-22 19:20:28
