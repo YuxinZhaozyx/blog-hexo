@@ -51,6 +51,7 @@ To represent the motion across a sequence of frames, the authors **stack the flo
 let $w$ and $h$ be the width and height of a video.
 
 a ConvNet input volume $I_\tau \in \mathbb R^{w \times h \times 2L}$ for an arbitrary frame $\tau$ is then constructed as follows:
+
 $$
 \begin{align}
 I_\tau(u,v,2k-1) &= d_{\tau+k-1}^x(u,v) \\
@@ -58,6 +59,7 @@ I_\tau(u,v,2k) &= d_{\tau+k-1}^y(u,v) \\
 u=[1;w], v&=[1;h], k=[1;L]
 \end{align}
 $$
+
 For an arbitrary point $(u,v)$, the channels $I_\tau(u,v,c), c=[1;2L]$ encode the motion at that point over a sequence of L frames.
 
 ![](two-stream-convolutional-network/Optical%20flow%20stacking.png)
@@ -67,6 +69,7 @@ For an arbitrary point $(u,v)$, the channels $I_\tau(u,v,c), c=[1;2L]$ encode th
 ### Trajectory stacking
 
 An alternative motion representation, inspired by the trajectory-based descriptors, replaces the optical flow, sampled at the same locations across several frames, with the flow, sampled along the motion trajectories.
+
 $$
 \begin{align}
 I_\tau(u,v,2k-1) &= d_{\tau+k-1}^x (p_k) \\
@@ -74,10 +77,13 @@ I_\tau(u,v,2k) &= d_{\tau+k-1}^y (p_k) \\
 u=[1;w], v&=[1;h],k=[1;L]
 \end{align}
 $$
+
 where $p_k$ is the $k$-th point along the trajectory, which starts at the location (u,v) in the frame $\tau$ and is defined by the following recurrence relation:
+
 $$
 p_1=(u,v) \\p_k=p_{k-1}+d_{\tau+k-2}(p_{k-1}), k>1
 $$
+
 ![](two-stream-convolutional-network/Trajectory%20stacking.png)
 
 

@@ -54,9 +54,11 @@ The paper consider three vision problems (**activity recognition, image captioni
  
 
 For a training set $\mathcal D$ of labeled sequences $(x_t, y_t)_{t=1}^T \in \mathcal D$, we can optimize the parameters $(V,W)$ of the model's visual and sequential components to minimize the expected negative log likelihood of a sequence sampled from the training set.
+
 $$
 \mathcal L(V,W, \mathcal D) = -\frac{1}{|\mathcal D|} \sum_{(x_t, y_t)_{t=1}^T \in \mathcal D} \sum_{t=1}^T \log P(y_t | x_{1:t}, y_{1:t-1}, V, W)
 $$
+
 The authors train their LRCN models using stochastic gradient descent, with backpropagation used to compute the gradient $\nabla_{V,W} \mathcal L(V,W,\mathcal D)$ of the objective $\mathcal L$ with respect to all parameters $(V,W)$ over $\text{minibatches } D \subset D$ sampled from the training dataset $\mathcal D$.
 
 
