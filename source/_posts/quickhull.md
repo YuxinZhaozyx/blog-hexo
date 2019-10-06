@@ -5,7 +5,7 @@ categories: ["algorithm"]
 reward: true
 copyright: true
 date: 2019-10-06 12:10:37
-thumbnail:
+thumbnail: /static/image/quickhull.png
 ---
 
 
