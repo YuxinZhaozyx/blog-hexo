@@ -69,3 +69,49 @@ $$
 O (n \log \log n)
 $$
 
+## 实现
+
+### C++ 实现
+
+
+
+```cpp
+/* Algorithm: Sieve of Eratosthenes
+ * 
+ * Args:
+ *    n (int): a integer (please ensure that n > 1)
+ *    L (int*): an array to store result (please ensure that the array is enough to store all prime less than n)
+ * 
+ * Returns:
+ *    number of prime that less than n
+ */
+int sieve(int n, int* L) {
+    int* A = new int[n+1];
+
+    for (int i = 2; i <= n; i++) {
+        A[i] = i;
+    }
+
+    int sqrt_n = int(std::sqrt(n));
+    for (int i = 2; i <= sqrt_n; i++) {
+        if (A[i] != 0) {
+            int j = i * i;
+            while (j <= n) {
+                A[j] = 0;
+                j = j + i;
+            }
+        }
+    }
+
+    int j = 0;
+    for (int i = 2; i <= n; i++) {
+        if (A[i] != 0) {
+            L[j] = i;
+            j += 1;
+        }
+    }
+
+    return j;
+}
+```
+
