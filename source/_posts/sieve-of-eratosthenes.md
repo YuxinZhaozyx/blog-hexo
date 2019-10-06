@@ -38,6 +38,7 @@ $$
 {\textbf{Input:} \quad \text{一个整数} \ n \quad (n>1) } \\
 {\textbf{Output:} \quad \text{包含所有小于等于} \ n \ \text{的质数的数组} \ L } \\
 
+{\textbf{function} \quad \text{Sieve} (n)} \\
 {\qquad \textbf{for} \enspace i \leftarrow 2 \enspace \textbf{to} \enspace n \enspace \textbf{do}}\\
 {\qquad \qquad A[i] \leftarrow i }\\
 {\qquad \textbf{end for} } \\
@@ -58,6 +59,7 @@ $$
 {\qquad \qquad \textbf{end if}}\\
 {\qquad \textbf{end for} } \\
 {\qquad \textbf{return} \enspace L } \\
+{\textbf{end function} } \\
 \hline
 \end{array}
 $$
