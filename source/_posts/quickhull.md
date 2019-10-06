@@ -75,3 +75,102 @@ $$
 + **最佳情况**：$\Theta (n)$
 + **最坏情况**：$\Theta (n^2)$
 
+
+
+## 实现
+
+### C++实现
+
+
+
+```c++
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+struct Vertex {
+    double x;
+    double y;
+};
+
+/*  Compare two vertices, determine whether vertex a < b */
+bool CompareVertex(Vertex a, Vertex b) {
+    if (a.x == b.x) {
+        return a.y < b.y;
+    }
+    else {
+        return a.x < b.x;
+    }
+}
+
+/* Find the upper or lower hull */ 
+std::vector<Vertex> __findHull(std::vector<Vertex> originSet, Vertex p1, Vertex p2, bool findUpper){
+    std::vector<Vertex> upperSet;
+
+    Vertex p_max;
+    double maxDistance = -1.0;
+    for (auto iter = originSet.begin(); iter != originSet.end(); iter++) {
+        double distance = p1.x * p2.y + (iter->x) * p1.y + p2.x * (iter->y) - (iter->x) * p2.y - p2.x * p1.y - p1.x * (iter->y);
+        if ((findUpper && distance > 0.0) || (!findUpper && distance < 0.0)) {
+            upperSet.push_back(*iter);
+            distance = std::abs(distance);
+            if (distance > maxDistance) {
+                p_max = (*iter);
+                maxDistance = distance;
+            }
+        }
+    }
+    
+    if (maxDistance > 0.0) {
+        std::vector<Vertex> SubHull1 = __findHull(upperSet, p1, p_max, findUpper);
+        std::vector<Vertex> SubHull2 = __findHull(upperSet, p_max, p2, findUpper);
+        SubHull1.insert(SubHull1.begin(), SubHull2.begin(), SubHull2.end());
+        SubHull1.push_back(p_max);
+        return SubHull1;
+    }
+    else {
+        return std::vector<Vertex>(); // empty
+    }
+
+}
+
+/* Algorithm: Qucik Hull
+ * 
+ * Args:
+ *     originSet (std::vector<Vertex>): set of n vertices 
+ * 
+ * Outputs:
+ *     std::vector<Vertex>: convex hull
+ */
+std::vector<Vertex> QuickHull(std::vector<Vertex> originSet){
+    // sort all vertice
+    std::sort(originSet.begin(), originSet.end(), CompareVertex);
+
+    // find upper and lower hulls
+    std::vector<Vertex> SubHull1 = __findHull(originSet, originSet.front(), originSet.back(), true);
+    std::vector<Vertex> SubHull2 = __findHull(originSet, originSet.front(), originSet.back(), false);
+
+    // combine upper and lower hulls
+    SubHull1.insert(SubHull1.begin(), SubHull2.begin(), SubHull2.end());
+    SubHull1.push_back(originSet.front());
+    SubHull1.push_back(originSet.back());
+
+    return SubHull1;
+}
+
+void test() {
+    std::vector<Vertex> originSet = {{1.0, 1.0}, {2.0, 2.0}, {3.0, 1.0}, {3.0, 3.0} , {1.0, 3.0}};
+    
+    originSet = QuickHull(originSet);
+
+    for (auto vertex: originSet){
+        std::cout << vertex.x << ' ' << vertex.y << std::endl; 
+    }
+}
+
+int main() {
+    test();
+    return 0;
+}
+```
+
