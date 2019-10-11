@@ -1,6 +1,6 @@
 ---
 title: Support Vector Machine 支持向量机
-tags: ["SVM"]
+tags: ["SVM", "math"]
 categories: ["machine-learning"]
 reward: true
 copyright: true
