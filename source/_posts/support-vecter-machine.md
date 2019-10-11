@@ -395,206 +395,206 @@ $$
 
 ```python
 def loadDataSet(fileName):
-	dataMat = []
-	labelMat = []
-	fr = open(fileName)
-	for line in fr.readlines():
-		lineArr = line.strip().split('\t')
-		dataMat.append([float(lineArr[0]), float(lineArr[1])])
-		labelMat.append(float(lineArr[2]))
-	return dataMat, labelMat
+    dataMat = []
+    labelMat = []
+    fr = open(fileName)
+    for line in fr.readlines():
+        lineArr = line.strip().split('\t')
+        dataMat.append([float(lineArr[0]), float(lineArr[1])])
+        labelMat.append(float(lineArr[2]))
+    return dataMat, labelMat
 
 def selectJrandom(i,m):
-	j=i
-	while j==i:
-		j = int(random.uniform(0,m))
-	return j
+    j=i
+    while j==i:
+        j = int(random.uniform(0,m))
+    return j
 
 def boundAlpha(alphaj, H, L):
-	if alphaj > H:
-		alphaj = H
-	if alphaj < L:
-		alphaj = L
-	return alphaj
+    if alphaj > H:
+        alphaj = H
+    if alphaj < L:
+        alphaj = L
+    return alphaj
 
 def SMOSimple(dataMat, classLabels, C, toler, maxIter):
-	dataMatrix = np.mat(dataMat)
-	labelMat = np.mat(classLabels).transpose()
-	b = 0
-	m,n = np.shape(dataMatrix)
-	alphas = np.mat(np.zeros((m,1)))
-	iter = 0
+    dataMatrix = np.mat(dataMat)
+    labelMat = np.mat(classLabels).transpose()
+    b = 0
+    m,n = np.shape(dataMatrix)
+    alphas = np.mat(np.zeros((m,1)))
+    iter = 0
 
-	while iter < maxIter:
-		alphaPairsChanged = 0
-		for i in range(m):			
-			Ei = float(np.multiply(alphas,labelMat).T*dataMatrix*dataMatrix[i,:].T)+ b - float(labelMat[i])
-			if (labelMat[i]*Ei < -toler and alphas[i]<C) or (labelMat[i]*Ei > toler and alphas[i]>0):
-				j = selectJrandom(i,m)
-				Ej = float(np.multiply(alphas,labelMat).T*dataMatrix*dataMatrix[j,:].T)+ b - float(labelMat[j])
-				alphaIold = alphas[i].copy()
-				alphaJold = alphas[j].copy()
+    while iter < maxIter:
+        alphaPairsChanged = 0
+        for i in range(m):			
+            Ei = float(np.multiply(alphas,labelMat).T*dataMatrix*dataMatrix[i,:].T)+ b - float(labelMat[i])
+            if (labelMat[i]*Ei < -toler and alphas[i]<C) or (labelMat[i]*Ei > toler and alphas[i]>0):
+                j = selectJrandom(i,m)
+                Ej = float(np.multiply(alphas,labelMat).T*dataMatrix*dataMatrix[j,:].T)+ b - float(labelMat[j])
+                alphaIold = alphas[i].copy()
+                alphaJold = alphas[j].copy()
 
-				if labelMat[i] != labelMat[j]:
-					L = max(0, alphas[j] - alphas[i])
-					H = min(C, alphas[j] - alphas[i] + C)
-				else:
-					L = max(0, alphas[j] + alphas[i] - C)
-					H = min(C, alphas[j] + alphas[i])
+                if labelMat[i] != labelMat[j]:
+                    L = max(0, alphas[j] - alphas[i])
+                    H = min(C, alphas[j] - alphas[i] + C)
+                else:
+                    L = max(0, alphas[j] + alphas[i] - C)
+                    H = min(C, alphas[j] + alphas[i])
 
-				if L==H:
-					print "L==H"
-					continue
+                if L==H:
+                    print "L==H"
+                    continue
 
-				eta =  dataMatrix[i,:]*dataMatrix[i,:].T + dataMatrix[j,:]*dataMatrix[j,:].T - 2.0 * dataMatrix[i,:] * dataMatrix[j,:].T 
-				if eta <= 0:
-					print "eta<=0"
-					continue
+                eta =  dataMatrix[i,:]*dataMatrix[i,:].T + dataMatrix[j,:]*dataMatrix[j,:].T - 2.0 * dataMatrix[i,:] * dataMatrix[j,:].T 
+                if eta <= 0:
+                    print "eta<=0"
+                    continue
 
-				alphas[j] += labelMat[j] * (Ei - Ej)/eta
-				alphas[j] = boundAlpha(alphas[j], H, L)
-				if abs(alphas[j]-alphaJold) < 0.00001 :
-					print "j not moving enough"
-					continue
-				alphas[i] += labelMat[j]*labelMat[i]*(alphaJold-alphas[j])
+                alphas[j] += labelMat[j] * (Ei - Ej)/eta
+                alphas[j] = boundAlpha(alphas[j], H, L)
+                if abs(alphas[j]-alphaJold) < 0.00001 :
+                    print "j not moving enough"
+                    continue
+                alphas[i] += labelMat[j]*labelMat[i]*(alphaJold-alphas[j])
 
-				b1 = b - Ei - labelMat[i]*(alphas[i]-alphaIold)*dataMatrix[i,:]*dataMatrix[i,:].T \
+                b1 = b - Ei - labelMat[i]*(alphas[i]-alphaIold)*dataMatrix[i,:]*dataMatrix[i,:].T \
 				            - labelMat[j]*(alphas[j]-alphaJold)*dataMatrix[i,:]*dataMatrix[j,:].T
-				b2 = b - Ej - labelMat[i]*(alphas[i]-alphaIold)*dataMatrix[i,:]*dataMatrix[j,:].T \
+                b2 = b - Ej - labelMat[i]*(alphas[i]-alphaIold)*dataMatrix[i,:]*dataMatrix[j,:].T \
 				            - labelMat[j]*(alphas[j]-alphaJold)*dataMatrix[j,:]*dataMatrix[j,:].T
 
-				if 0 < alphas[i] < C :
-					b = b1
-				elif 0 < alphas[j] < C :
-					b = b2
-				else:
-					b = 0.5*(b1+b2)
+                if 0 < alphas[i] < C :
+                    b = b1
+                elif 0 < alphas[j] < C :
+                    b = b2
+                else:
+                    b = 0.5*(b1+b2)
 
-				alphaPairsChanged += 1
-				print "iter: %d i: %d, pairs changed %d" % (iter, i, alphaPairsChanged)
+                alphaPairsChanged += 1
+                print "iter: %d i: %d, pairs changed %d" % (iter, i, alphaPairsChanged)
 
-		if alphaPairsChanged == 0:
-			iter += 1
-		else:
-			iter = 0	
+        if alphaPairsChanged == 0:
+            iter += 1
+        else:
+            iter = 0	
 
-		print "iteration number: %d" % iter
-	return b, alphas
+        print "iteration number: %d" % iter
+    return b, alphas
 
 ```
 
 ```python
 class OptStruct:
-	def __init__(self, dataMat, classLabels, C, toler):
-		self.X = dataMat
-		self.labelMat = classLabels
-		self.C = C
-		self.toler = toler
-		self.m = np.shape(dataMat)[0]
-		self.alphas = np.mat(np.zeros((self.m, 1)))
-		self.b = 0
-		self.eCache = np.mat(np.zeros((self.m, 2))) # 误差缓存
+    def __init__(self, dataMat, classLabels, C, toler):
+        self.X = dataMat
+        self.labelMat = classLabels
+        self.C = C
+        self.toler = toler
+        self.m = np.shape(dataMat)[0]
+        self.alphas = np.mat(np.zeros((self.m, 1)))
+        self.b = 0
+        self.eCache = np.mat(np.zeros((self.m, 2))) # 误差缓存
 
 def calcEi(optStruct, i):
-	Ei = float(np.multiply(optStruct.alphas, optStruct.labelMat).T*(optStruct.X*optStruct.X[i,:].T)) + optStruct.b - float(optStruct.labelMat[i])
-	return Ei
+    Ei = float(np.multiply(optStruct.alphas, optStruct.labelMat).T*(optStruct.X*optStruct.X[i,:].T)) + optStruct.b - float(optStruct.labelMat[i])
+    return Ei
 
 def selectJ(i, optStruct, Ei):
-	maxK = -1
-	maxDeltaE = 0
-	Ej = 0
-	optStruct.eCache[i] = [1, Ei]
-	validECacheList = np.nonzero(optStruct.eCache[:,0].A)[0]
-	if len(validECacheList) > 1:
-		for k in validECacheList:
-			if k == i:
-				continue
-			Ek = calcEi(optStruct, k)
-			deltaE = abs(Ei - Ek)
-			if deltaE > maxDeltaE:
-				maxK = k
-				maxDeltaE = deltaE
-				Ej = Ek
-		return maxK, Ej
-	else:
-		j = selectJrandom(i, optStruct.m)
-		Ej = calcEi(optStruct, j)
-	return j, Ej
+    maxK = -1
+    maxDeltaE = 0
+    Ej = 0
+    optStruct.eCache[i] = [1, Ei]
+    validECacheList = np.nonzero(optStruct.eCache[:,0].A)[0]
+    if len(validECacheList) > 1:
+        for k in validECacheList:
+            if k == i:
+                continue
+            Ek = calcEi(optStruct, k)
+            deltaE = abs(Ei - Ek)
+            if deltaE > maxDeltaE:
+                maxK = k
+                maxDeltaE = deltaE
+                Ej = Ek
+        return maxK, Ej
+    else:
+        j = selectJrandom(i, optStruct.m)
+        Ej = calcEi(optStruct, j)
+    return j, Ej
 
 def UpdateEk(optStruct, k):
-	Ek = calcEi(optStruct, k)
-	optStruct.eCache[k] = [1,Ek]
+    Ek = calcEi(optStruct, k)
+    optStruct.eCache[k] = [1,Ek]
 
 def innerL(i, optStruct):
-	Ei = calcEi(optStruct, i)
-	if(optStruct.labelMat[i]*Ei < - optStruct.toler and optStruct.alphas[i] < optStruct.C) or (optStruct.labelMat[i]*Ei > optStruct.toler and optStruct.alphas[i] > 0):
-		j, Ej = selectJ(i, optStruct, Ei)
-		alphaIold = optStruct.alphas[i].copy()
-		alphaJold = optStruct.alphas[j].copy()
-		if optStruct.labelMat[i] != optStruct.labelMat[j]:
-			L = max(0, alphaJold - alphaIold)
-			H = min(optStruct.C, alphaJold - alphaIold + optStruct.C)
-		else:
-			L = max(0, alphaJold + alphaIold - optStruct.C)
-			H = min(optStruct.C, alphaJold + alphaIold)
+    Ei = calcEi(optStruct, i)
+    if(optStruct.labelMat[i]*Ei < - optStruct.toler and optStruct.alphas[i] < optStruct.C) or (optStruct.labelMat[i]*Ei > optStruct.toler and optStruct.alphas[i] > 0):
+        j, Ej = selectJ(i, optStruct, Ei)
+        alphaIold = optStruct.alphas[i].copy()
+        alphaJold = optStruct.alphas[j].copy()
+        if optStruct.labelMat[i] != optStruct.labelMat[j]:
+            L = max(0, alphaJold - alphaIold)
+            H = min(optStruct.C, alphaJold - alphaIold + optStruct.C)
+        else:
+            L = max(0, alphaJold + alphaIold - optStruct.C)
+            H = min(optStruct.C, alphaJold + alphaIold)
 
-		if L==H:
-			print "L==H"
-			return 0
+        if L==H:
+            print "L==H"
+            return 0
 
-		eta = optStruct.X[i,:]*optStruct.X[i,:].T + optStruct.X[j,:]*optStruct.X[j,:].T - 2.0 * optStruct.X[i,:]* optStruct.X[j,:].T
-		if eta <= 0:
-			print "eta <= 0"
-			return 0
+        eta = optStruct.X[i,:]*optStruct.X[i,:].T + optStruct.X[j,:]*optStruct.X[j,:].T - 2.0 * optStruct.X[i,:]* optStruct.X[j,:].T
+        if eta <= 0:
+            print "eta <= 0"
+            return 0
 
-		optStruct.alphas[j] += optStruct.labelMat[j]*(Ei-Ej)/eta
-		optStruct.alphas[j] = boundAlpha(optStruct.alphas[j], H, L)
-		UpdateEk(optStruct, j)		
+        optStruct.alphas[j] += optStruct.labelMat[j]*(Ei-Ej)/eta
+        optStruct.alphas[j] = boundAlpha(optStruct.alphas[j], H, L)
+        UpdateEk(optStruct, j)		
 
-		if abs(optStruct.alphas[j] - alphaJold) < 0.00001:
-			print "j not moving enough"
-			return 0
-		optStruct.alphas[i] += optStruct.labelMat[j]*optStruct.labelMat[i]*(alphaJold - optStruct.alphas[j])
-		UpdateEk(optStruct, i)
-		b1 = optStruct.b - Ei - optStruct.labelMat[i]*(optStruct.alphas[i]-alphaIold)*optStruct.X[i,:]*optStruct.X[i,:].T \
+        if abs(optStruct.alphas[j] - alphaJold) < 0.00001:
+            print "j not moving enough"
+            return 0
+        optStruct.alphas[i] += optStruct.labelMat[j]*optStruct.labelMat[i]*(alphaJold - optStruct.alphas[j])
+        UpdateEk(optStruct, i)
+        b1 = optStruct.b - Ei - optStruct.labelMat[i]*(optStruct.alphas[i]-alphaIold)*optStruct.X[i,:]*optStruct.X[i,:].T \
 		                      - optStruct.labelMat[j]*(optStruct.alphas[j]-alphaJold)*optStruct.X[i,:]*optStruct.X[j,:].T	
-		b2 = optStruct.b - Ei - optStruct.labelMat[i]*(optStruct.alphas[i]-alphaIold)*optStruct.X[i,:]*optStruct.X[j,:].T \
+        b2 = optStruct.b - Ei - optStruct.labelMat[i]*(optStruct.alphas[i]-alphaIold)*optStruct.X[i,:]*optStruct.X[j,:].T \
 		                      - optStruct.labelMat[j]*(optStruct.alphas[j]-alphaJold)*optStruct.X[j,:]*optStruct.X[j,:].T	
-		if 0 < optStruct.alphas[i] < optStruct.C :
-			optStruct.b = b1
-		elif 0 < optStruct.alphas[j] < optStruct.C :
-			optStruct.b = b2
-		else:
-			optStruct.b = 0.5*(b1+b2)
+        if 0 < optStruct.alphas[i] < optStruct.C :
+            optStruct.b = b1
+        elif 0 < optStruct.alphas[j] < optStruct.C :
+            optStruct.b = b2
+        else:
+            optStruct.b = 0.5*(b1+b2)
 		
-		return 1
-	else:
-		return 0
+        return 1
+    else:
+        return 0
 
 def SMOPlatt(dataMat, classLabels, C, toler, maxIter, kTup=('lin', 0)):
-	optStruct = OptStruct(np.mat(dataMat),np.mat(classLabels).transpose(), C, toler)
-	iter = 0
-	entireSet = True
-	alphaPairsChanged = 0
-	while iter < maxIter and (alphaPairsChanged > 0 or entireSet):
-		alphaPairsChanged = 0
-		if entireSet:
-			for i in range(optStruct.m):
-				alphaPairsChanged += innerL(i, optStruct)
-			print "fullSet, iter: %d i: %d, pairs changed %d" %(iter, i, alphaPairsChanged)
-			iter += 1
-		else:
-			nonBoundIs = np.nonzero((optStruct.alphas.A > 0)*(optStruct.alphas.A < C))[0]
-			for i in nonBoundIs:
-				alphaPairsChanged += innerL(i, optStruct)
-				print "non-bound, iter: %d i: %d, pairs changed %d" %(iter, i, alphaPairsChanged)
-			iter += 1
-		if entireSet:
-			entireSet = False
-		elif alphaPairsChanged == 0:
-			entireSet = True
-		print "iteration number: %d" % iter
-	return optStruct.b,optStruct.alphas
+    optStruct = OptStruct(np.mat(dataMat),np.mat(classLabels).transpose(), C, toler)
+    iter = 0
+    entireSet = True
+    alphaPairsChanged = 0
+    while iter < maxIter and (alphaPairsChanged > 0 or entireSet):
+        alphaPairsChanged = 0
+        if entireSet:
+            for i in range(optStruct.m):
+                alphaPairsChanged += innerL(i, optStruct)
+            print "fullSet, iter: %d i: %d, pairs changed %d" %(iter, i, alphaPairsChanged)
+            iter += 1
+        else:
+            nonBoundIs = np.nonzero((optStruct.alphas.A > 0)*(optStruct.alphas.A < C))[0]
+            for i in nonBoundIs:
+                alphaPairsChanged += innerL(i, optStruct)
+                print "non-bound, iter: %d i: %d, pairs changed %d" %(iter, i, alphaPairsChanged)
+            iter += 1
+        if entireSet:
+            entireSet = False
+        elif alphaPairsChanged == 0:
+            entireSet = True
+        print "iteration number: %d" % iter
+    return optStruct.b,optStruct.alphas
 
 ```
 
@@ -608,153 +608,153 @@ $$
 
 ```python
 class OptStruct:
-	def __init__(self, dataMat, classLabels, C, toler, kTuple):
-		self.X = dataMat
-		self.labelMat = classLabels
-		self.C = C
-		self.toler = toler
-		self.m = np.shape(dataMat)[0]
-		self.alphas = np.mat(np.zeros((self.m, 1)))
-		self.b = 0
-		self.eCache = np.mat(np.zeros((self.m, 2))) # 误差缓存
-		self.K = np.mat(np.zeros((self.m, self.m)))
-		for i in range(self.m):
-			self.K[:, i] = kernelTransform(self.X, self.X[i,:], kTuple)
+    def __init__(self, dataMat, classLabels, C, toler, kTuple):
+        self.X = dataMat
+        self.labelMat = classLabels
+        self.C = C
+        self.toler = toler
+        self.m = np.shape(dataMat)[0]
+        self.alphas = np.mat(np.zeros((self.m, 1)))
+        self.b = 0
+        self.eCache = np.mat(np.zeros((self.m, 2))) # 误差缓存
+        self.K = np.mat(np.zeros((self.m, self.m)))
+        for i in range(self.m):
+            self.K[:, i] = kernelTransform(self.X, self.X[i,:], kTuple)
 
 def calcEi(optStruct, i):
-	Ei = float(np.multiply(optStruct.alphas, optStruct.labelMat).T*optStruct.K[:,i]) + optStruct.b - float(optStruct.labelMat[i])
-	return Ei
+    Ei = float(np.multiply(optStruct.alphas, optStruct.labelMat).T*optStruct.K[:,i]) + optStruct.b - float(optStruct.labelMat[i])
+    return Ei
 
 def selectJ(i, optStruct, Ei):
-	maxK = -1
-	maxDeltaE = 0
-	Ej = 0
-	optStruct.eCache[i] = [1, Ei]
-	validECacheList = np.nonzero(optStruct.eCache[:,0].A)[0]
-	if len(validECacheList) > 1:
-		for k in validECacheList:
-			if k == i:
-				continue
-			Ek = calcEi(optStruct, k)
-			deltaE = abs(Ei - Ek)
-			if deltaE > maxDeltaE:
-				maxK = k
-				maxDeltaE = deltaE
-				Ej = Ek
-		return maxK, Ej
-	else:
-		j = selectJrandom(i, optStruct.m)
-		Ej = calcEi(optStruct, j)
-	return j, Ej
+    maxK = -1
+    maxDeltaE = 0
+    Ej = 0
+    optStruct.eCache[i] = [1, Ei]
+    validECacheList = np.nonzero(optStruct.eCache[:,0].A)[0]
+    if len(validECacheList) > 1:
+        for k in validECacheList:
+            if k == i:
+                continue
+            Ek = calcEi(optStruct, k)
+            deltaE = abs(Ei - Ek)
+            if deltaE > maxDeltaE:
+                maxK = k
+                maxDeltaE = deltaE
+                Ej = Ek
+        return maxK, Ej
+    else:
+        j = selectJrandom(i, optStruct.m)
+        Ej = calcEi(optStruct, j)
+    return j, Ej
 
 def UpdateEk(optStruct, k):
-	Ek = calcEi(optStruct, k)
-	optStruct.eCache[k] = [1,Ek]
+    Ek = calcEi(optStruct, k)
+    optStruct.eCache[k] = [1,Ek]
 
 def innerL(i, optStruct):
-	Ei = calcEi(optStruct, i)
-	if(optStruct.labelMat[i]*Ei < - optStruct.toler and optStruct.alphas[i] < optStruct.C) or (optStruct.labelMat[i]*Ei > optStruct.toler and optStruct.alphas[i] > 0):
-		j, Ej = selectJ(i, optStruct, Ei)
-		alphaIold = optStruct.alphas[i].copy()
-		alphaJold = optStruct.alphas[j].copy()
-		if optStruct.labelMat[i] != optStruct.labelMat[j]:
-			L = max(0, alphaJold - alphaIold)
-			H = min(optStruct.C, alphaJold - alphaIold + optStruct.C)
-		else:
-			L = max(0, alphaJold + alphaIold - optStruct.C)
-			H = min(optStruct.C, alphaJold + alphaIold)
+    Ei = calcEi(optStruct, i)
+    if(optStruct.labelMat[i]*Ei < - optStruct.toler and optStruct.alphas[i] < optStruct.C) or (optStruct.labelMat[i]*Ei > optStruct.toler and optStruct.alphas[i] > 0):
+        j, Ej = selectJ(i, optStruct, Ei)
+        alphaIold = optStruct.alphas[i].copy()
+        alphaJold = optStruct.alphas[j].copy()
+        if optStruct.labelMat[i] != optStruct.labelMat[j]:
+            L = max(0, alphaJold - alphaIold)
+            H = min(optStruct.C, alphaJold - alphaIold + optStruct.C)
+        else:
+            L = max(0, alphaJold + alphaIold - optStruct.C)
+            H = min(optStruct.C, alphaJold + alphaIold)
 
-		if L==H:
-			print "L==H"
-			return 0
+        if L==H:
+            print "L==H"
+            return 0
 
-		eta = optStruct.K[i,i] + optStruct.K[j,j] - 2.0 * optStruct.K[i,j]
-		if eta <= 0:
-			print "eta <= 0"
-			return 0
+        eta = optStruct.K[i,i] + optStruct.K[j,j] - 2.0 * optStruct.K[i,j]
+        if eta <= 0:
+            print "eta <= 0"
+            return 0
 
-		optStruct.alphas[j] += optStruct.labelMat[j]*(Ei-Ej)/eta
-		optStruct.alphas[j] = boundAlpha(optStruct.alphas[j], H, L)
-		UpdateEk(optStruct, j)		
+        optStruct.alphas[j] += optStruct.labelMat[j]*(Ei-Ej)/eta
+        optStruct.alphas[j] = boundAlpha(optStruct.alphas[j], H, L)
+        UpdateEk(optStruct, j)		
 
-		if abs(optStruct.alphas[j] - alphaJold) < 0.00001:
-			print "j not moving enough"
-			return 0
-		optStruct.alphas[i] += optStruct.labelMat[j]*optStruct.labelMat[i]*(alphaJold - optStruct.alphas[j])
-		UpdateEk(optStruct, i)
-		b1 = optStruct.b - Ei - optStruct.labelMat[i]*(optStruct.alphas[i]-alphaIold)*optStruct.K[i,i] \
+        if abs(optStruct.alphas[j] - alphaJold) < 0.00001:
+            print "j not moving enough"
+            return 0
+        optStruct.alphas[i] += optStruct.labelMat[j]*optStruct.labelMat[i]*(alphaJold - optStruct.alphas[j])
+        UpdateEk(optStruct, i)
+        b1 = optStruct.b - Ei - optStruct.labelMat[i]*(optStruct.alphas[i]-alphaIold)*optStruct.K[i,i] \
 		                      - optStruct.labelMat[j]*(optStruct.alphas[j]-alphaJold)*optStruct.K[i,j]
-		b2 = optStruct.b - Ei - optStruct.labelMat[i]*(optStruct.alphas[i]-alphaIold)*optStruct.K[i,j] \
+        b2 = optStruct.b - Ei - optStruct.labelMat[i]*(optStruct.alphas[i]-alphaIold)*optStruct.K[i,j] \
 		                      - optStruct.labelMat[j]*(optStruct.alphas[j]-alphaJold)*optStruct.K[j,j]
-		if 0 < optStruct.alphas[i] < optStruct.C :
-			optStruct.b = b1
-		elif 0 < optStruct.alphas[j] < optStruct.C :
-			optStruct.b = b2
-		else:
-			optStruct.b = 0.5*(b1+b2)
+        if 0 < optStruct.alphas[i] < optStruct.C :
+            optStruct.b = b1
+        elif 0 < optStruct.alphas[j] < optStruct.C :
+            optStruct.b = b2
+        else:
+            optStruct.b = 0.5*(b1+b2)
 		
-		return 1
-	else:
-		return 0
+        return 1
+    else:
+        return 0
 
 def SMOPlatt(dataMat, classLabels, C, toler, maxIter, kTuple=('lin', 0)):
-	optStruct = OptStruct(np.mat(dataMat),np.mat(classLabels).transpose(), C, toler, kTuple)
-	iter = 0
-	entireSet = True
-	alphaPairsChanged = 0
-	while iter < maxIter and (alphaPairsChanged > 0 or entireSet):
-		alphaPairsChanged = 0
-		if entireSet:
-			for i in range(optStruct.m):
-				alphaPairsChanged += innerL(i, optStruct)
-			print "fullSet, iter: %d i: %d, pairs changed %d" %(iter, i, alphaPairsChanged)
-			iter += 1
-		else:
-			nonBoundIs = np.nonzero((optStruct.alphas.A > 0)*(optStruct.alphas.A < C))[0]
-			for i in nonBoundIs:
-				alphaPairsChanged += innerL(i, optStruct)
-				print "non-bound, iter: %d i: %d, pairs changed %d" %(iter, i, alphaPairsChanged)
-			iter += 1
-		if entireSet:
-			entireSet = False
-		elif alphaPairsChanged == 0:
-			entireSet = True
-		print "iteration number: %d" % iter
-	return optStruct.b,optStruct.alphas
+    optStruct = OptStruct(np.mat(dataMat),np.mat(classLabels).transpose(), C, toler, kTuple)
+    iter = 0
+    entireSet = True
+    alphaPairsChanged = 0
+    while iter < maxIter and (alphaPairsChanged > 0 or entireSet):
+        alphaPairsChanged = 0
+        if entireSet:
+            for i in range(optStruct.m):
+                alphaPairsChanged += innerL(i, optStruct)
+            print "fullSet, iter: %d i: %d, pairs changed %d" %(iter, i, alphaPairsChanged)
+            iter += 1
+        else:
+            nonBoundIs = np.nonzero((optStruct.alphas.A > 0)*(optStruct.alphas.A < C))[0]
+            for i in nonBoundIs:
+                alphaPairsChanged += innerL(i, optStruct)
+                print "non-bound, iter: %d i: %d, pairs changed %d" %(iter, i, alphaPairsChanged)
+            iter += 1
+        if entireSet:
+            entireSet = False
+        elif alphaPairsChanged == 0:
+            entireSet = True
+        print "iteration number: %d" % iter
+    return optStruct.b,optStruct.alphas
 
 def kernelTransform(X, A, kTuple):
-	m,n = np.shape(X)
-	K = np.mat(np.zeros((m,1)))
-	if kTuple[0] == 'lin': 
-		K = X*A.T
-	elif kTuple[0] == 'rbf':
-		for j in range(m):
-			deltaRow = X[j,:] - A
-			K[j] = deltaRow * deltaRow.T
-		K = np.exp(K/(-1*kTuple[1]**2))
-	else:
-		raise NameError('That Kernel is not recognized')
-	return K
+    m,n = np.shape(X)
+    K = np.mat(np.zeros((m,1)))
+    if kTuple[0] == 'lin': 
+        K = X*A.T
+    elif kTuple[0] == 'rbf':
+        for j in range(m):
+            deltaRow = X[j,:] - A
+            K[j] = deltaRow * deltaRow.T
+        K = np.exp(K/(-1*kTuple[1]**2))
+    else:
+        raise NameError('That Kernel is not recognized')
+    return K
 ```
 
 ```python
 def testRbf(k1 = 1.3):
-	dataArr, labelArr = loadDataSet('testSetRBF.txt')
-	b, alphas = SMOPlatt(dataArr, labelArr, 200, 0.0001, 10000, ('rbf', k1))
-	dataMat = np.mat(dataArr)
-	labelMat = np.mat(labelArr).transpose()
-	supportVectorIndex = np.nonzero(alphas.A>0)[0]
-	supportVectors = dataMat[supportVectorIndex]
-	labelSupportVector = labelMat[supportVectorIndex]
-	print 'there are %d Support Vectors' % np.shape(supportVectors)[0]
-	m,n = np.shape(dataMat)
-	errorCount = 0
-	for i in range(m):
-		kernelEval = kernelTransform(supportVectors, dataMat[i,:],('rbf',k1))
-		predict = kernelEval.T * np.multiply(labelSupportVector, alphas[supportVectorIndex])+b
-		if np.sign(predict) != np.sign(labelArr[i]): 
-			errorCount += 1
-	print 'the training error rate is: %f' %(float(errorCount)/m)
+    dataArr, labelArr = loadDataSet('testSetRBF.txt')
+    b, alphas = SMOPlatt(dataArr, labelArr, 200, 0.0001, 10000, ('rbf', k1))
+    dataMat = np.mat(dataArr)
+    labelMat = np.mat(labelArr).transpose()
+    supportVectorIndex = np.nonzero(alphas.A>0)[0]
+    supportVectors = dataMat[supportVectorIndex]
+    labelSupportVector = labelMat[supportVectorIndex]
+    print 'there are %d Support Vectors' % np.shape(supportVectors)[0]
+    m,n = np.shape(dataMat)
+    errorCount = 0
+    for i in range(m):
+        kernelEval = kernelTransform(supportVectors, dataMat[i,:],('rbf',k1))
+        predict = kernelEval.T * np.multiply(labelSupportVector, alphas[supportVectorIndex])+b
+        if np.sign(predict) != np.sign(labelArr[i]): 
+        errorCount += 1
+    print 'the training error rate is: %f' %(float(errorCount)/m)
 
 ```
 
