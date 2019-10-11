@@ -58,7 +58,7 @@ void QuickSort(int arr[], int len) {
     }
     
     QuickSort(arr, front);
-    QuickSort(&arr[front + 1], len-front - 1);
+    QuickSort(&arr[front + 1], len-front - 1); // front最大会超出边界=len，但是此时len-front-1=-1，进入函数后新的len<2会直接返回，不会发生数组越界
 }
 
 void Test(){
