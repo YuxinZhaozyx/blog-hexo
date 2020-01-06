@@ -1,7 +1,7 @@
 ---
-title: windows上vim的安装与配置
+title: Windows上vim的安装与配置
 tags: ["vim"]
-categories: ["windows", "tools"]
+categories: ["windows"]
 reward: true
 copyright: true
 date: 2020-01-06 14:29:15
@@ -17,7 +17,6 @@ thumbnail: vim-for-windows/bg.jpg
 <!--more-->
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1310288821&auto=1&height=66"></iframe>
-
 
 # 安装vim
 
