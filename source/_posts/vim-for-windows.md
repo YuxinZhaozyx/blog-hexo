@@ -17,6 +17,8 @@ thumbnail: vim-for-windows/bg.jpg
 <!--more-->
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1310288821&auto=1&height=66"></iframe>
+
+
 # 安装vim
 
 一开始我按照[GitHub官方仓库vim/vim](https://github.com/vim/vim)上的官方教程，从[vim官网下载页面](https://www.vim.org/download.php)下载并安装了vim，基本能够正常使用，但是在后续安装vim插件的过程中，发现官网编译的vim并不支持python，所有依赖于python的vim插件都无法正常使用。解决方法有二：
