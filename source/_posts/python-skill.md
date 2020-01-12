@@ -12,7 +12,7 @@ thumbnail: python-skill/python.jpg
 
 
 
-本文记录平时阅读大牛的python项目代码时用到的一些奇妙的技巧， 持续更新中...
+本文记录平时阅读大牛的python项目代码时看到的一些奇妙的技巧， 同时也记录一些常用(boring)的技巧，持续更新中...
 
 本文涉及的技巧除了纯python的技巧，还包含以下常用python库的技巧：
 
