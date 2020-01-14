@@ -207,3 +207,9 @@ sudo nvidia-docker run -p 9888:8888 -v /src_dir:/dst_dir --name container_name -
 
 使用中可以用 CTRL + P + Q 退出容器但不关闭容器。
 
+使用以下命令可以在容器上另外开启一个终端，该终端中可以直接 `exit` 而不会影响容器运行:
+
+```
+sudo docker exec -it container_name /bin/bash
+```
+
