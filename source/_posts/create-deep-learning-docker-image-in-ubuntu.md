@@ -202,8 +202,10 @@ sudo docker commit -m="comment" -a="author_name" container_id image_name:tag
 # 使用
 
 ```shell
-sudo nvidia-docker run -p 9888:8888 -v /src_dir:/dst_dir --name container_name -it image_name:tag /bin/bash
+sudo nvidia-docker run --shm-size 20G -p 9888:8888 -v /src_dir:/dst_dir --name container_name -it image_name:tag /bin/bash
 ```
+
++ `--shm-size` 用于指定共享内存的大小，默认只有 64M。
 
 使用中可以用 CTRL + P + Q 退出容器但不关闭容器。
 
