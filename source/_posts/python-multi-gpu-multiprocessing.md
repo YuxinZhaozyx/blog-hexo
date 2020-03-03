@@ -25,7 +25,7 @@ thumbnail: python-multi-gpu-multiprocessing/python.jpg
 + 必须确保在 `if __name__ == '__main__':` 之后调用。
 + 更详细的说明见[此处](https://docs.python.org/2/library/multiprocessing.html?highlight=process#windows)。
 
-**注：**本文代码不能在Windows上运行，原因是违反第一项限制，虽然也有方法可以让它兼容Windows，但是目前我使用多进程的场景基本都在Linux上，哪天有需要了再写个Windows兼容的版本。
+**注：**本文代码不能在Windows上运行，原因是违反第一项限制，虽然也有方法可以让它兼容Windows，但是目前我使用多进程的场景基本都在Linux上，~~哪天有需要了再写个Windows兼容的版本~~，**兼容Windows的实现已完成，请参见[easycore多GPU并行加速](/easycore-parallel-multi-gpu)**。
 
 # 设计思路
 
@@ -189,7 +189,7 @@ if __name__ == '__main__':
 **注：**
 
 + 最后的 `del` 通过删除该对象可以手动关闭开的所有子进程，如果没有手动`del`的话，所有子进程直到主进程结束时才会自动关闭。
-+ **传入的数据不能过多**，多少合适呢？只要保证消费者对象`Sumer._ReceiveWorker`放到输出队列的结果别太大就行，这是因为python进程间的通信使用的是pickle序列化对象，而pickle限制了最大只能序列化4GB的对象。
++ **传入的数据不能过多**，多少合适呢？只要保证消费者对象`Sumer._ReceiveWorker`放到输出队列的结果别太大就行，这是因为python进程间的通信使用的是pickle序列化对象，而pickle限制了最大只能序列化4GB的对象。**PS: [easycore已克服该缺点](/easycore-parallel-multi-gpu)**。
 
 ## 有序并行：求列表元素平方
 

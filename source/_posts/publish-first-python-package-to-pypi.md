@@ -27,7 +27,7 @@ thumbnail: publish-first-python-package-to-pypi/logo.png
 from setuptools import setup, find_packages
 
 setup(
-	name = '<your package name>',
+    name = '<your package name>',
     version = '0.1.0',
     author = '<your name>',
     author_email = 'your@your_mail',
@@ -46,12 +46,12 @@ setup(
 ## 本地打包
 
 ```shell
-python setup.py sdict bdist_wheel
+python setup.py sdist bdist_wheel
 ```
 
-该命令会在本地建立`dict`目录用于存放生成的包。
+该命令会在本地建立`dist`目录用于存放生成的包。
 
-+ `sdict` 会生成一个包含源码的包，用户获取后会在本地重新编译构建。
++ `sdist` 会生成一个包含源码的包，用户获取后会在本地重新编译构建。
 + `bdist_wheel` 会生成一个预编译的`.whl` 文件。
 
 ## 创建PyPI账号
