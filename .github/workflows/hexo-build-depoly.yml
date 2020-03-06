@@ -40,7 +40,7 @@ jobs:
 
       - name: 部署博客
         run: |
-          hexo clean && hexo g && gulp
+          hexo clean && hexo g
           cd ./public
           git init
           git config user.name "${{secrets.GIT_NAME}}"
