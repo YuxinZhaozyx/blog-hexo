@@ -40,6 +40,8 @@ jobs:
 
       - name: 部署博客
         run: |
+          mkdir themes
+          git clone https://github.com/YuxinZhaozyx/hexo-theme-inside.git themes/inside
           hexo clean && hexo g
           cd ./public
           git init
