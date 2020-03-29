@@ -72,6 +72,7 @@ $$
 ![1585465759642](efficientnet/1585465759642.png)
 
 作者提出的复合缩放方法使用一个复合系数 $\phi$ 来统一缩放模型的深度、宽度和分辨率。
+
 $$
 \begin{align}
 \text{depth}: \space &d = \alpha^\phi \\
