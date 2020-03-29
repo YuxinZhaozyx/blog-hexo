@@ -53,7 +53,7 @@ $$
 2. PANet (Pyramid attention network)
    + PANet增加了一条自底向上的通路，更好地融合了特征，准确率也比FPN和NAS-FPN高。
 
-作者有对PANet做了以下改进得到了BiFPN：
+作者又对PANet做了以下改进得到了BiFPN：
 
 1. 移除只有单个入边的节点。因为只有单个入边的节点对特征融合没有作用。
 2. 为同级的输入结点和输出节点增加一个连接。
