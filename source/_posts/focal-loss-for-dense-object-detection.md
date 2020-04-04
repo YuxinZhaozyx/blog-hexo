@@ -153,4 +153,4 @@ $\gamma$ 和 $\alpha$ 两个参数相互影响，作者发现，当 $\alpha$ 取
 
 # 参考文献
 
-[1] Lin, Tsung-Yi, Goyal, Priya, Girshick, Ross,等. Focal Loss for Dense Object Detection[J]. IEEE Transactions on Pattern Analysis & Machine Intelligence, 2017, PP(99):2999-3007.
++ Lin T Y, Goyal P, Girshick R, et al. Focal loss for dense object detection[C]//Proceedings of the IEEE international conference on computer vision. 2017: 2980-2988.
