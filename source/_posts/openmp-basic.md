@@ -149,6 +149,57 @@ threads: 7 time on clock(): 0.001098 time on wall: 0.000518768
 threads: 8 time on clock(): 0.001211 time on wall: 0.000538669
 ```
 
+当不加 `private(i)` ，即使用直接使用 `parallel for` 时，将不再按照一个变量一个线程来并行，而是按照平均分配循环次数。如线程数为3，循环范围为0-8时，线程0负责0-2的范围，线程1负责3-5，线程2负责6-8。
+
+可以通过 `schedule(type, chunksize)` 来调整循环的分配方式：
+
++ `type` 为调度方式，有以下5种
+  + `static`
+    + 在循环开始之前就先设置好迭代的轮数。
+    + 将循环以 `chunksize` 为大小，分成 `total_iterations / chunksize` 份chunk，每个线程按顺序一份份执行。
+    + 当省略 `chunksize` 时，`chunksize = totoal_iterations / thread_count`。
+  + `dynamic`
+    + 在循环执行过程中，动态决定哪个线程执行哪个chunk。
+    + `chunksize` 的设置同 `static`, 但是在运行时哪个线程空闲chunk就会被分配给哪个线程。
+    + 当省略 `chunksize` 时， `chunksize = 1`。
+  + `guided`
+    + 在循环执行过程中，动态决定哪个线程执行哪个chunk。
+    + chunk的大小不固定为`chunksize`, 而是在运行过程中递减，直至为每个chunk为 `chunksize` 大小。
+    + 当省略 `chunksize` 时， `chunksize = 1`。
+  + `auto`
+    + 运行时根据系统自动选择合适的调度方式。
+  + `runtime`
+    + 运行时通过环境变量 `OMP_SCHEDULE` 决定使用哪种调度方式，如 `export OMP_SCHEDULE="static, 1"`。
+
+```cpp
+#pragma omp parallel for num_threads(thread_count) schedule(static, 2)
+for (i = 0; i < n; i++)
+    result[i] = f(i);
+```
+
+
+
+# 规约操作(reduction operators)
+
+规约操作符是一个二元操作符，比如 `+` 或 `*`。规约操作指讲一系列操作数用同一个规约操作符重复地进行计算，中间结果都存储到同一变量(规约变量)的过程。
+
+**语法：**
+
+```cpp
+reduction(<operator>: <variable list>)
+```
+
+其中的操作符可以是 `+`, `*`, `-`, `&`, `|`, `^`, `&&`, `||`。
+
+```
+global_result = 0.0;
+#pragma omp parallel for num_threads(4) reduction(+: global_result)
+for (i = 1; i < n; i++)
+    global_result += i
+```
+
+
+
 # 临界区(critical section)
 
 ## 编译指示
