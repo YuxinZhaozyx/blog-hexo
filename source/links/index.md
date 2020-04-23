@@ -12,7 +12,7 @@ date: 2019-09-25 13:51:22
 			<a href="https://segmentfault.com/u/fobird" title="Jireh Chan" target="_blank">
 			<img class=" lazyloaded" data-src="https://avatar-static.segmentfault.com/200/768/200768258-5e526661ad5a5_huge256" onerror="this.onerror=null;this.src='/static/friend_404.gif'" alt="Jireh Chan" src="https://avatar-static.segmentfault.com/200/768/200768258-5e526661ad5a5_huge256">
 			<div class="md-links-title">Jireh Chan</div>
-			<div class="md-links-des">密码学、图形学、NLP大佬</div>
+			<div class="md-links-des">图形学、NLP大佬</div>
 			</a>
 		</li>
 		<!--------------------Jiaxiao Wen--------------------->
