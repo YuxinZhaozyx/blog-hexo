@@ -18,7 +18,7 @@ date: 2019-09-25 13:51:22
 		<!--------------------Jiaxiao Wen--------------------->
 		<li class="md-links-item">
 			<a href="http://giahaowjx.top/" title="Jiaxiao Wen" target="_blank">
-			<img class=" lazyloaded" data-src="http://giahaowjx.top/img/avatar.jpg" onerror="this.onerror=null;this.src='/static/friend_404.gif'" alt="Jiaxiao Wen" src="http://giahaowjx.top/img/avatar.jpg">
+			<img class=" lazyloaded" data-src="https://giahaowjx.top/img/avatar.jpg" onerror="this.onerror=null;this.src='/static/friend_404.gif'" alt="Jiaxiao Wen" src="https://giahaowjx.top/img/avatar.jpg">
 			<div class="md-links-title">Jiaxiao Wen</div>
 			<div class="md-links-des">张量分解领域大佬</div>
 			</a>
