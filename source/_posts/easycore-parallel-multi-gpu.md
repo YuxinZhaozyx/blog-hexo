@@ -1,6 +1,6 @@
 ---
 title: easycore多GPU并行加速
-tags: ["easycore","python","pytorch","multiprocesssing"]
+tags: ["easycore","python","pytorch","multiprocessing"]
 categories: ["tools"]
 reward: true
 copyright: true
