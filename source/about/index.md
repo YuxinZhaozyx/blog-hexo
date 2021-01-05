@@ -30,9 +30,4 @@ I’m a college student of software engineering at the South China University of
 | -------- | --------------------------------------------------- |
 | Email    | 1322032296@qq.com <br> zyx1322032296@gmail.com      |
 | Github   | [YuxinZhaozyx](http://github.com/YuxinZhaozyx)      |
-| Bilibili | [免疫immunity](https://space.bilibili.com/23011162) |
-
-
-
-
-
+| Bilibili | [星下旅人](https://space.bilibili.com/23011162) |
