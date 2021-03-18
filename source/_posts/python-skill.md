@@ -185,12 +185,24 @@ for i in range(A.shape[0]):
 
 该过程可以用 `np.vectorize()` 向量化：
 
-```forpython
+```python
 vec_func = np.vectorize(python_func)
 C = vec_func(A, B)
 ```
 
 `np.vectorize()` 将python函数向量化后可以达到 C 语言循环的速度。
+
+
+## 根据条件修改图片中满足条件的像素值
+
+假定我们想将RGB图片中R大于180且B大于200的的像素点的数值改成R=180,G=190,B=200。
+
+```python
+print(img.shape)  # (512,512,3)
+
+img = np.where(np.repeat(np.bitwise_and(img[:,:,0] > 180, img[:,:,2] > 200)[:,:,None], 3, axis=2), np.array([180,190,200], dtype=np.uint8).reshape(1,1,3), img)
+```
+
 
 # pytorch
 
