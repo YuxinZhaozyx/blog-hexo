@@ -1177,3 +1177,23 @@ docker stop <name/id>    # 移除容器前要先停止容器
 docker rm <name/id>		 # 移除容器
 ```
 
+
+
+## 查找宿主机进程所在的容器
+
+假设要查找的进程是40850
+
+```shell
+docker_query_pid=40850
+for docker_id in $(docker ps -q | xargs)
+do
+    if `expr $(docker top $docker_id | grep $docker_query_pid | wc -l) > 0`
+    then
+        docker ps | grep $docker_id
+        docker top $docker_id | grep $docker_query_pid
+    fi
+done
+```
+
+
+
