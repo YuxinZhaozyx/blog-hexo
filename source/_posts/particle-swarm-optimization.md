@@ -330,7 +330,7 @@ $$
 \boldsymbol{x}(t+1)=\boldsymbol{A} \boldsymbol{x}(t)
 $$
 
-当 $t \rightarrow \infin$ 时，$\boldsymbol{x}(t) \rightarrow \boldsymbol{0}$ 则称该系统是稳定的。
+当 $t \rightarrow \infty$ 时，$\boldsymbol{x}(t) \rightarrow \boldsymbol{0}$ 则称该系统是稳定的。
 
 我们可以使用 $\boldsymbol{A}$ 的特征值和特征向量来描述该系统的稳定性。
 
