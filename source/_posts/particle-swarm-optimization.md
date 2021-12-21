@@ -31,11 +31,13 @@ thumbnail:
 每一次更新速度时，粒子 $i$ 都以一定概率向 $\boldsymbol{b}_i$ 和 $\boldsymbol{h}_i$ 两个最优位置偏移。
 
 由于更新公式 $\boldsymbol{x}_i \leftarrow \boldsymbol{x}_i + \boldsymbol{v}_i$ 可能导致 $\boldsymbol{x}_i$ 超出搜索空间，因此可以增加一些限制将移动出搜索空间的粒子拉回搜索空间内，如
+
 $$
 \begin{align}
 \boldsymbol{x}_i &\leftarrow \min \{ \boldsymbol{x}_i, \boldsymbol{x}_{max} \} \\ \boldsymbol{x}_i &\leftarrow \max \{ \boldsymbol{x}_i, \boldsymbol{x}_{min} \}
 \end{align}
 $$
+
 此处 $[\boldsymbol{x}_{min}, \boldsymbol{x}_{max}$] 定义了搜索空间的界限。
 
 ## 算法涉及的超参数
@@ -153,13 +155,16 @@ if __name__ == '__main__':
 # 速度限制
 
 考虑 $\phi_2=0$ 的简化版PSO算法，粒子位置和速度的更新如下：
+
 $$
 \begin{align}
 \boldsymbol{v}_i(t+1) &= \boldsymbol{v}_i(t) + \phi_1(\boldsymbol{b}_i - \boldsymbol{x}_i(t)) \\
 \boldsymbol{x}_i(t+1) &= \boldsymbol{x}_i(t) + \boldsymbol{v}_i(t+1)
 \end{align}
 $$
+
 上式可写成
+
 $$
 \begin{bmatrix}
 \boldsymbol{x}_i(t+1) \\
@@ -181,10 +186,13 @@ $$
 \end{bmatrix}
 \boldsymbol{b}_i
 $$
+
 右边矩阵的特征值为
+
 $$
 \lambda = \frac{2 - \phi_1 \pm \sqrt{\phi_1^2 - 4 \phi_1}}2
 $$
+
 特征值 $\lambda$ 支配着系统的稳定性（解释见附录）。
 
 + 当 $\phi_1 \in [0, 4]$ 时，$|\lambda| = 1$，系统处于临界稳定，对某些初始情况下的$\boldsymbol{x}_i(t)$ 和 $\boldsymbol{v}_i(t)$ 会无限增大。
@@ -197,9 +205,11 @@ $$
 # 惯性权重
 
 可以通过给速度 $\boldsymbol{v}_i(t)$ 添加一个惯性权重 $w$ 使得粒子在优化过程中减小惯性以获得更好的性能。
+
 $$
 \boldsymbol{v}_i \leftarrow w \boldsymbol{v}_i + \phi_1(\boldsymbol{b}_i - \boldsymbol{x}_i) + \phi_2 (\boldsymbol{h}_i - \boldsymbol{x}_i)
 $$
+
 惯性权重 $w$ 经常取从第一代的 0.9 减少到最后一代的 0.4 左右。
 
 随着迭代进行，惯性权重有助于降低粒子的速度从而改善收敛性。
@@ -209,21 +219,43 @@ $$
 # 压缩系数
 
 惯性权重常常使用压缩系数来实现而不是惯性权重。
+
 $$
 \boldsymbol{v}_i \leftarrow K[ \boldsymbol{v}_i + \phi_1(\boldsymbol{b}_i - \boldsymbol{x}_i) + \phi_2 (\boldsymbol{h}_i - \boldsymbol{x}_i) ]
 $$
+
 其中，$K$ 被称为压缩系数。
 
 可以一般化的写成：
+
 $$
 \begin{align}
 \boldsymbol{v}_i(t + 1) &= K[\boldsymbol{v}_i(t) + \phi_T (\boldsymbol{p}_i(t) - \boldsymbol{x}_i(t))] \\
-\phi_T &= \phi_{1,max} + \phi_{2,max} \\
+\phi_T &= \phi_{1} + \phi_{2} \\
 \boldsymbol{p}_i(t) &= \frac{\phi_1 \boldsymbol{b}_i(t) + \phi_2 \boldsymbol{h}_i(t)}{\phi_1+\phi_2}
 \end{align}
 $$
 
+**定理：** 如果速度更新中 $\boldsymbol{b}_i$ 和 $\boldsymbol{h}_i$ 为常数，且 $\phi_T > 4$，则对于
 
+$$
+K < \frac{2}{\phi_T - 2}
+$$
+
+粒子群优化是稳定的。
+
+因此可以取
+
+$$
+\begin{align}
+K &=\frac{2\alpha}{\phi_{T,max} -2} \\
+\phi_{T,max} &= \phi_{1,max} + \phi_{2,max}
+\end{align}
+$$
+
+其中，$\alpha \in (0, 1)$ 指示在粒子群优化算法变得不稳定之前，压缩系数 $K$ 与其理论上限的接近程度，较大的 $\alpha$ 允许更多的探索，较小的 $\alpha$ 强调对局部的开发。
+
+通过使迭代过程中 $\alpha$ 由大变小能够使算法在前期注重探索，在后期注重局部寻优，从而取得更好的效果。
 
 
 # 全局速度更新
@@ -235,10 +267,11 @@ $$
 其中， $\boldsymbol{g}$ 为历史中所有粒子的最好位置。
 
 可以一般化的写成：
+
 $$
 \begin{align}
 \boldsymbol{v}_i(t + 1) &= K[\boldsymbol{v}_i(t) + \phi_T (\boldsymbol{p}_i(t) - \boldsymbol{x}_i(t))] \\
-\phi_T &= \phi_{1,max} + \phi_{2,max} + \phi_{3,max} \\
+\phi_T &= \phi_{1} + \phi_{2} + \phi_{3} \\
 \boldsymbol{p}_i(t) &= \frac{\phi_1 \boldsymbol{b}_i(t) + \phi_2 \boldsymbol{h}_i(t) + \phi_3 \boldsymbol{g}(t)}{\phi_1+\phi_2+\phi_3}
 \end{align}
 $$
@@ -249,22 +282,28 @@ $$
 让每个粒子的速度都根据当代所有粒子的位置来更新，而不是依据少数几个当代粒子或者历史上的最优粒子。
 
 可以一般化的写成：
+
 $$
 \begin{align}
 \boldsymbol{v}_i(t + 1) &= K[\boldsymbol{v}_i(t) + \phi_T (\boldsymbol{p}_i(t) - \boldsymbol{x}_i(t))] \\
-\phi_T &= \frac1M \sum_{j=1}^M \phi_{j,max} \\
+\phi_T &= \sum_{j=1}^M \phi_{j} \\
 \boldsymbol{p}_i(t) &= \frac{ \sum_{j=1}^M w_{ij}\phi_j \boldsymbol{b}_i(t)}{\sum_{j=1}^M w_{ij} \phi_j}
 \end{align}
 $$
+
 其中 $\boldsymbol{b}_j(t)$ 为第 $j$ 个粒子目前为止找到的最好的解：
+
 $$
 \boldsymbol{b}_j(t) = \arg \min_x f(\boldsymbol{x}): \boldsymbol{x} \in \{ \boldsymbol{x}_j(0), \boldsymbol{x}_j(1), \cdots, \boldsymbol{x}_j(t)\}
 $$
+
 常取：
+
 $$
 \begin{align}
 \phi_{j,max} &\approx 2 \\
-K &= \frac{2 \alpha}{M \phi_T - 2}, \alpha \in (0,1)
+K &= \frac{2 \alpha}{M \phi_{T,max} - 2}, \alpha \in (0,1) \\
+\phi_{T,max} &= \sum_{j=1}^M \phi_{j,max}
 \end{align}
 $$
 
@@ -272,9 +311,11 @@ $$
 # 负强化的粒子群优化算法
 
 原本的PSO算法强调粒子应该向好的粒子靠近，而**负强化的粒子群优化算法(Negative inreforcement particle swarm optmization, NPSO)**除了要求向好的粒子靠近，还要求远离不好的粒子。
+
 $$
 \boldsymbol{v}_i \leftarrow K[ \boldsymbol{v}_i + \phi_1(\boldsymbol{b}_i - \boldsymbol{x}_i) + \phi_2 (\boldsymbol{h}_i - \boldsymbol{x}_i) + \phi_3(\boldsymbol{g} - \boldsymbol{x}_i) \\ - \phi_4(\boldsymbol{\bar b}_i - \boldsymbol{x}_i) - \phi_5 (\boldsymbol{\bar h}_i - \boldsymbol{x}_i) - \phi_6(\boldsymbol{\bar g} - \boldsymbol{x}_i)]
 $$
+
 其中，$\boldsymbol{\bar b}_i$ 是第 $i$ 个粒子以前最差的位置，$\boldsymbol{\bar h}_i$ 是第 $i$ 个粒子的领域当代最差的位置，$\boldsymbol{\bar g}$ 是整个种群以前最差的位置。
 
 
@@ -284,9 +325,11 @@ $$
 # 附录： 离散线性定常系统的稳定性
 
 离散线性定常系统可以描述为
+
 $$
 \boldsymbol{x}(t+1)=\boldsymbol{A} \boldsymbol{x}(t)
 $$
+
 当 $t \rightarrow \infin$ 时，$\boldsymbol{x}(t) \rightarrow \boldsymbol{0}$ 则称该系统是稳定的。
 
 我们可以使用 $\boldsymbol{A}$ 的特征值和特征向量来描述该系统的稳定性。
