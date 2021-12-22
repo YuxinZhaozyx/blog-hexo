@@ -313,7 +313,9 @@ $$
 原本的PSO算法强调粒子应该向好的粒子靠近，而**负强化的粒子群优化算法(Negative inreforcement particle swarm optmization, NPSO)**除了要求向好的粒子靠近，还要求远离不好的粒子。
 
 $$
-\boldsymbol{v}_i \leftarrow K[ \boldsymbol{v}_i + \phi_1(\boldsymbol{b}_i - \boldsymbol{x}_i) + \phi_2 (\boldsymbol{h}_i - \boldsymbol{x}_i) + \phi_3(\boldsymbol{g} - \boldsymbol{x}_i) \\ - \phi_4(\boldsymbol{\bar b}_i - \boldsymbol{x}_i) - \phi_5 (\boldsymbol{\bar h}_i - \boldsymbol{x}_i) - \phi_6(\boldsymbol{\bar g} - \boldsymbol{x}_i)]
+\begin{align}
+\boldsymbol{v}_i \leftarrow & K[ \boldsymbol{v}_i + \phi_1(\boldsymbol{b}_i - \boldsymbol{x}_i) + \phi_2 (\boldsymbol{h}_i - \boldsymbol{x}_i) + \phi_3(\boldsymbol{g} - \boldsymbol{x}_i) \\ &- \phi_4(\boldsymbol{\bar b}_i - \boldsymbol{x}_i) - \phi_5 (\boldsymbol{\bar h}_i - \boldsymbol{x}_i) - \phi_6(\boldsymbol{\bar g} - \boldsymbol{x}_i)]
+\end{align}
 $$
 
 其中，$\boldsymbol{\bar b}_i$ 是第 $i$ 个粒子以前最差的位置，$\boldsymbol{\bar h}_i$ 是第 $i$ 个粒子的领域当代最差的位置，$\boldsymbol{\bar g}$ 是整个种群以前最差的位置。
