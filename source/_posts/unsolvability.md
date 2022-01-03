@@ -131,7 +131,7 @@ thumbnail:
   \varphi_\theta(x) = \begin{cases} 1, &\varphi_x(x) \downarrow \\ \uparrow, &\varphi_x(x) \uparrow \end{cases}
   $$
   
-  若该问题可解，则“任给自然数 $x$，问 $\varphi_x(x)$ 是否不收敛”个问题同样可解，即存在一个Turing机 $T_v$ 使得
+  若该问题可解，则“任给自然数 $x$，问 $\varphi_x(x)$ 是否不收敛”这个问题同样可解，即存在一个Turing机 $T_v$ 使得
   
   $$
   \varphi_v(x) = \begin{cases} \uparrow, &\varphi_x(x) \downarrow \\ 1, &\varphi_x(x) \uparrow \end{cases}
