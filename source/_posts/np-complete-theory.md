@@ -257,28 +257,25 @@ $$
   
   \begin{array}[]{l}
   
-  \rule{0mm}{13.5mm} \left.\begin{array}[]{l} \rule{0mm}{13.5mm} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n \end{array} \right\} 作查头之用 \\
-  \rule{0mm}{9mm} \left. \rule{0mm}{7mm}\right\} 为 a_i选取真假值,i=1,\cdots,n \\
+  \rule[-10mm]{0mm}{22mm} \left.\begin{array}[]{l} \rule{0mm}{4.5mm} \\ \rule{0mm}{4.5mm} \\ S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n \end{array} \right\} 作查头之用 \\
+  \rule[-5mm]{0mm}{15mm} \left. \rule{0mm}{7mm}\right\} 为 a_i选取真假值,i=1,\cdots,n \\
   \rule{0mm}{4.5mm} 当前子句已满足，观察下一子句\\  
   \rule{0mm}{4.5mm} 当前子句尚未满足，寻求满意文字\\
   \rule{0mm}{4.5mm} S 遍取 a_1,\cdots, a_{i-1}, a_{i+1}, \cdots, a_n,\bar a_1, \cdots, \bar a_n；不满意则右移\\
-  \rule{0mm}{4.5mm} S 遍取 a_1, \cdots, a_n,\bar a_1, \cdots, \bar a_{i-1}, \bar a_{i+1}, \cdots, \bar a_n；不满意则右移\\ \rule{0mm}{9mm} \left. \rule{0mm}{8mm}\right\} 发现满意文字后，装新内态 w_i^\pm\\
-  \rule{0mm}{9mm} \left.\begin{array}[]{l} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n \\ \rule{0mm}{4.5mm} \end{array} \right\} 标志被满足了的子句 \\
-  \rule{0mm}{9mm} \left.\begin{array}[]{l} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, | \\ \rule{0mm}{4.5mm} \end{array} \right\} 寻找下一个未被满足的子句 \\
-  \rule{0mm}{9mm} \left. \rule{0mm}{7mm}\right\} 准备为下一个命题变元选真假值\\
+  \rule{0mm}{4.5mm} S 遍取 a_1, \cdots, a_n,\bar a_1, \cdots, \bar a_{i-1}, \bar a_{i+1}, \cdots, \bar a_n；不满意则右移\\ \rule[-5mm]{0mm}{15mm} \left. \rule{0mm}{8mm}\right\} 发现满意文字后，装新内态 w_i^\pm\\
+  \rule[-5mm]{0mm}{15mm} \left.\begin{array}[]{l} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n \\ \rule{0mm}{4.5mm} \end{array} \right\} 标志被满足了的子句 \\
+  \rule[-5mm]{0mm}{15mm} \left.\begin{array}[]{l} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, | \\ \rule{0mm}{4.5mm} \end{array} \right\} 寻找下一个未被满足的子句 \\
+  \rule[-5mm]{0mm}{15mm} \left. \rule{0mm}{7mm}\right\} 准备为下一个命题变元选真假值\\
   \rule{0mm}{4.5mm} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, /, |, 找输入字 x 的头 \\
-  \rule{0mm}{18mm} \left.\begin{array}[]{l}
-  \rule{0mm}{9mm} 
-  S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, | \\
-  \rule{0mm}{9mm} 
-  S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, /, |, B \\
-  \end{array} \right\} 最后检查是否还残存/符号，即是否满足了 \\
+  \rule[-12mm]{0mm}{28mm} \left.\begin{array}[]{l} \rule{0mm}{4.5mm} \\ S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, | \\ \rule{0mm}{4.5mm} \\ S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, /, |, B \\ \end{array} \right\} 最后检查是否还残存/符号，即是否满足了 \\
   \end{array}
   \end{array}
   $$
   
   
   > 待续
+
+
 
 
 
