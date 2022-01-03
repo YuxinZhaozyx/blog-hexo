@@ -230,29 +230,29 @@ $$
   $$
   \begin{array}[]{}
   
-  \left( \begin{array}[]{}
-  q_1 & B & R & q_1 \\
-  q_1 & / & L & m_1 \\
-  q_1 & S & L & q_1 \\
-  m_i & B & R & r_i^+ \\
-  m_i & B & R & r_i^- \\
-  r_i^\pm & | & R& v_i^\pm \\
-  r_i^\pm & / & R& v_i^\pm \\
-  r_i^+ & S & R & r_i^+ \\
-  r_i^- & S & R & r_i^- \\
-  r_i^+ & a_i & L & w_i^+ \\
-  r_i^- & \bar a_i & L & w_i^- \\
-  w_i^\pm & S & L & w_i^\pm \\
-  w_i^\pm & / & | & v_i^\pm \\
-  v_i^\pm & S & R & v_i^\pm \\
-  v_i^\pm & / & R & r_i^\pm \\
-  r_i^\pm & B & L & m_{i+1} \\
-  v_i^\pm & B & L & m_{i+1} \\
-  m_{i+1} & S & L & m_{i+1} \\
-  m_{n+1} & B & R & p \\
-  p & S & R & p \\
-  p & / & L & \bar p \\
-  \bar p & S & R & p
+   \left( \begin{array}[]{}
+  \rule{0mm}{4mm} q_1 & B & R & q_1 \\
+  \rule{0mm}{4mm} q_1 & / & L & m_1 \\
+  \rule{0mm}{4mm} q_1 & S & L & q_1 \\
+  \rule{0mm}{4mm} m_i & B & R & r_i^+ \\
+  \rule{0mm}{4mm} m_i & B & R & r_i^- \\
+  \rule{0mm}{4mm} r_i^\pm & | & R& v_i^\pm \\
+  \rule{0mm}{4mm} r_i^\pm & / & R& v_i^\pm \\
+  \rule{0mm}{4mm} r_i^+ & S & R & r_i^+ \\
+  \rule{0mm}{4mm} r_i^- & S & R & r_i^- \\
+  \rule{0mm}{4mm} r_i^+ & a_i & L & w_i^+ \\
+  \rule{0mm}{4mm} r_i^- & \bar a_i & L & w_i^- \\
+  \rule{0mm}{4mm} w_i^\pm & S & L & w_i^\pm \\
+  \rule{0mm}{4mm} w_i^\pm & / & | & v_i^\pm \\
+  \rule{0mm}{4mm} v_i^\pm & S & R & v_i^\pm \\
+  \rule{0mm}{4mm} v_i^\pm & / & R & r_i^\pm \\
+  \rule{0mm}{4mm} r_i^\pm & B & L & m_{i+1} \\
+  \rule{0mm}{4mm} v_i^\pm & B & L & m_{i+1} \\
+  \rule{0mm}{4mm} m_{i+1} & S & L & m_{i+1} \\
+  \rule{0mm}{4mm} m_{n+1} & B & R & p \\
+  \rule{0mm}{4mm} p & S & R & p \\
+  \rule{0mm}{4mm} p & / & L & \bar p \\
+  \rule{0mm}{4mm} \bar p & S & R & p
   \end{array} \right)
   
   \begin{array}[]{}
