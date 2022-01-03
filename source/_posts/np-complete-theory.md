@@ -230,61 +230,54 @@ $$
   $$
   \begin{array}[]{}
   
-   \left( \begin{array}[]{}
-  \rule{0mm}{4.4mm} q_1 & B & R & q_1 \\
-  \rule{0mm}{4.4mm} q_1 & / & L & m_1 \\
-  \rule{0mm}{4.4mm} q_1 & S & L & q_1 \\
-  \rule{0mm}{4.4mm} m_i & B & R & r_i^+ \\
-  \rule{0mm}{4.4mm} m_i & B & R & r_i^- \\
-  \rule{0mm}{4.4mm} r_i^\pm & | & R& v_i^\pm \\
-  \rule{0mm}{4.4mm} r_i^\pm & / & R& v_i^\pm \\
-  \rule{0mm}{4.4mm} r_i^+ & S & R & r_i^+ \\
-  \rule{0mm}{4.4mm} r_i^- & S & R & r_i^- \\
-  \rule{0mm}{4.4mm} r_i^+ & a_i & L & w_i^+ \\
-  \rule{0mm}{4.4mm} r_i^- & \bar a_i & L & w_i^- \\
-  \rule{0mm}{4.4mm} w_i^\pm & S & L & w_i^\pm \\
-  \rule{0mm}{4.4mm} w_i^\pm & / & | & v_i^\pm \\
-  \rule{0mm}{4.4mm} v_i^\pm & S & R & v_i^\pm \\
-  \rule{0mm}{4.4mm} v_i^\pm & / & R & r_i^\pm \\
-  \rule{0mm}{4.4mm} r_i^\pm & B & L & m_{i+1} \\
-  \rule{0mm}{4.4mm} v_i^\pm & B & L & m_{i+1} \\
-  \rule{0mm}{4.4mm} m_{i+1} & S & L & m_{i+1} \\
-  \rule{0mm}{4.4mm} m_{n+1} & B & R & p \\
-  \rule{0mm}{4.4mm} p & S & R & p \\
-  \rule{0mm}{4.4mm} p & / & L & \bar p \\
-  \rule{0mm}{4.4mm} \bar p & S & R & p
+   \left( \begin{array}[]{l}
+  \rule{0mm}{4.5mm} q_1 & B & R & q_1 \\
+  \rule{0mm}{4.5mm} q_1 & / & L & m_1 \\
+  \rule{0mm}{4.5mm} q_1 & S & L & q_1 \\
+  \rule{0mm}{4.5mm} m_i & B & R & r_i^+ \\
+  \rule{0mm}{4.5mm} m_i & B & R & r_i^- \\
+  \rule{0mm}{4.5mm} r_i^\pm & | & R& v_i^\pm \\
+  \rule{0mm}{4.5mm} r_i^\pm & / & R& v_i^\pm \\
+  \rule{0mm}{4.5mm} r_i^+ & S & R & r_i^+ \\
+  \rule{0mm}{4.5mm} r_i^- & S & R & r_i^- \\
+  \rule{0mm}{4.5mm} r_i^+ & a_i & L & w_i^+ \\
+  \rule{0mm}{4.5mm} r_i^- & \bar a_i & L & w_i^- \\
+  \rule{0mm}{4.5mm} w_i^\pm & S & L & w_i^\pm \\
+  \rule{0mm}{4.5mm} w_i^\pm & / & | & v_i^\pm \\
+  \rule{0mm}{4.5mm} v_i^\pm & S & R & v_i^\pm \\
+  \rule{0mm}{4.5mm} v_i^\pm & / & R & r_i^\pm \\
+  \rule{0mm}{4.5mm} r_i^\pm & B & L & m_{i+1} \\
+  \rule{0mm}{4.5mm} v_i^\pm & B & L & m_{i+1} \\
+  \rule{0mm}{4.5mm} m_{i+1} & S & L & m_{i+1} \\
+  \rule{0mm}{4.5mm} m_{n+1} & B & R & p \\
+  \rule{0mm}{4.5mm} p & S & R & p \\
+  \rule{0mm}{4.5mm} p & / & L & \bar p \\
+  \rule{0mm}{4.5mm} \bar p & S & R & p
   \end{array} \right)
   
-  \begin{array}[]{}
+  \begin{array}[]{l}
   
-  \rule{0mm}{13mm} \left.\begin{array}[]{}
-  \rule{0mm}{11mm} \\ S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n
-  \end{array} \right\} 作查头之用 \\
-  \left. \rule{0mm}{7mm}\right\} 为 a_i选取真假值,i=1,\cdots,n \\
-  \rule{0mm}{5mm} 当前子句已满足，观察下一子句\\  
-  \rule{0mm}{5mm} 当前子句尚未满足，寻求满意文字\\
-  \rule{0mm}{5mm} S 遍取 a_1,\cdots, a_{i-1}, a_{i+1}, \cdots, a_n,\bar a_1, \cdots, \bar a_n；不满意则右移\\
-  \rule{0mm}{5mm} S 遍取 a_1, \cdots, a_n,\bar a_1, \cdots, \bar a_{i-1}, \bar a_{i+1}, \cdots, \bar a_n；不满意则右移\\ \rule{0mm}{2mm}
-  \left. \rule{0mm}{8mm}\right\} 发现满意文字后，装新内态 w_i^\pm\\
-  \rule{0mm}{9mm} \left.\begin{array}[]{}
-   S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n \\ \rule{0mm}{5mm} \\
-  \end{array} \right\} 标志被满足了的子句 \\
-  \rule{0mm}{9mm} \left.\begin{array}[]{}
-   S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, | \\ \rule{0mm}{5mm} \\
-  \end{array} \right\} 寻找下一个未被满足的子句 \\
-  \left. \rule{0mm}{7mm}\right\} 准备为下一个命题变元选真假值\\
-  \rule{0mm}{6mm} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, /, |, 找输入字 x 的头 \\
-  \rule{0mm}{14mm} \left.\begin{array}[]{}
-  \rule{0mm}{4mm} \\
+  \rule{0mm}{13.5mm} \left.\begin{array}[]{l} \rule{0mm}{13.5mm} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n \end{array} \right\} 作查头之用 \\
+  \rule{0mm}{9mm} \left. \rule{0mm}{7mm}\right\} 为 a_i选取真假值,i=1,\cdots,n \\
+  \rule{0mm}{4.5mm} 当前子句已满足，观察下一子句\\  
+  \rule{0mm}{4.5mm} 当前子句尚未满足，寻求满意文字\\
+  \rule{0mm}{4.5mm} S 遍取 a_1,\cdots, a_{i-1}, a_{i+1}, \cdots, a_n,\bar a_1, \cdots, \bar a_n；不满意则右移\\
+  \rule{0mm}{4.5mm} S 遍取 a_1, \cdots, a_n,\bar a_1, \cdots, \bar a_{i-1}, \bar a_{i+1}, \cdots, \bar a_n；不满意则右移\\ \rule{0mm}{9mm} \left. \rule{0mm}{8mm}\right\} 发现满意文字后，装新内态 w_i^\pm\\
+  \rule{0mm}{9mm} \left.\begin{array}[]{l} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n \\ \rule{0mm}{4.5mm} \end{array} \right\} 标志被满足了的子句 \\
+  \rule{0mm}{9mm} \left.\begin{array}[]{l} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, | \\ \rule{0mm}{4.5mm} \end{array} \right\} 寻找下一个未被满足的子句 \\
+  \rule{0mm}{9mm} \left. \rule{0mm}{7mm}\right\} 准备为下一个命题变元选真假值\\
+  \rule{0mm}{4.5mm} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, /, |, 找输入字 x 的头 \\
+  \rule{0mm}{18mm} \left.\begin{array}[]{l}
+  \rule{0mm}{9mm} 
   S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, | \\
-  \rule{0mm}{4mm} \\
+  \rule{0mm}{9mm} 
   S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, /, |, B \\
   \end{array} \right\} 最后检查是否还残存/符号，即是否满足了 \\
   \end{array}
   \end{array}
   $$
   
-
+  
   > 待续
 
 
