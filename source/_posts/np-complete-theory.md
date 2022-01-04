@@ -4,7 +4,7 @@ tags: ["algorithm", "math", 'complexity']
 categories: ["algorithm"]
 reward: true
 copyright: true
-date: 2022-1-1 14:20:41
+date: 2022-1-3 14:20:41
 thumbnail:
 ---
 
