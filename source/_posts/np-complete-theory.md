@@ -231,46 +231,46 @@ $$
   \begin{array}[]{}
   
    \left( \begin{array}[]{l}
-  \rule{0em}{1em} q_1 & B & R & q_1 \\
-  \rule{0em}{1em} q_1 & / & L & m_1 \\
-  \rule{0em}{1em} q_1 & S & L & q_1 \\
-  \rule{0em}{1em} m_i & B & R & r_i^+ \\
-  \rule{0em}{1em} m_i & B & R & r_i^- \\
-  \rule{0em}{1em} r_i^\pm & | & R& v_i^\pm \\
-  \rule{0em}{1em} r_i^\pm & / & R& v_i^\pm \\
-  \rule{0em}{1em} r_i^+ & S & R & r_i^+ \\
-  \rule{0em}{1em} r_i^- & S & R & r_i^- \\
-  \rule{0em}{1em} r_i^+ & a_i & L & w_i^+ \\
-  \rule{0em}{1em} r_i^- & \bar a_i & L & w_i^- \\
-  \rule{0em}{1em} w_i^\pm & S & L & w_i^\pm \\
-  \rule{0em}{1em} w_i^\pm & / & | & v_i^\pm \\
-  \rule{0em}{1em} v_i^\pm & S & R & v_i^\pm \\
-  \rule{0em}{1em} v_i^\pm & / & R & r_i^\pm \\
-  \rule{0em}{1em} r_i^\pm & B & L & m_{i+1} \\
-  \rule{0em}{1em} v_i^\pm & B & L & m_{i+1} \\
-  \rule{0em}{1em} m_{i+1} & S & L & m_{i+1} \\
-  \rule{0em}{1em} m_{n+1} & B & R & p \\
-  \rule{0em}{1em} p & S & R & p \\
-  \rule{0em}{1em} p & / & L & \bar p \\
-  \rule{0em}{1em} \bar p & S & R & p
+  \rule[-0.5em]{0em}{2em} q_1 & B & R & q_1 \\
+  \rule[-0.5em]{0em}{2em} q_1 & / & L & m_1 \\
+  \rule[-0.5em]{0em}{2em} q_1 & S & L & q_1 \\
+  \rule[-0.5em]{0em}{2em} m_i & B & R & r_i^+ \\
+  \rule[-0.5em]{0em}{2em} m_i & B & R & r_i^- \\
+  \rule[-0.5em]{0em}{2em} r_i^\pm & | & R& v_i^\pm \\
+  \rule[-0.5em]{0em}{2em} r_i^\pm & / & R& v_i^\pm \\
+  \rule[-0.5em]{0em}{2em} r_i^+ & S & R & r_i^+ \\
+  \rule[-0.5em]{0em}{2em} r_i^- & S & R & r_i^- \\
+  \rule[-0.5em]{0em}{2em} r_i^+ & a_i & L & w_i^+ \\
+  \rule[-0.5em]{0em}{2em} r_i^- & \bar a_i & L & w_i^- \\
+  \rule[-0.5em]{0em}{2em} w_i^\pm & S & L & w_i^\pm \\
+  \rule[-0.5em]{0em}{2em} w_i^\pm & / & | & v_i^\pm \\
+  \rule[-0.5em]{0em}{2em} v_i^\pm & S & R & v_i^\pm \\
+  \rule[-0.5em]{0em}{2em} v_i^\pm & / & R & r_i^\pm \\
+  \rule[-0.5em]{0em}{2em} r_i^\pm & B & L & m_{i+1} \\
+  \rule[-0.5em]{0em}{2em} v_i^\pm & B & L & m_{i+1} \\
+  \rule[-0.5em]{0em}{2em} m_{i+1} & S & L & m_{i+1} \\
+  \rule[-0.5em]{0em}{2em} m_{n+1} & B & R & p \\
+  \rule[-0.5em]{0em}{2em} p & S & R & p \\
+  \rule[-0.5em]{0em}{2em} p & / & L & \bar p \\
+  \rule[-0.5em]{0em}{2em} \bar p & S & R & p
   \end{array} \right)
   
   \begin{array}[]{l}
   
-  \left.\begin{array}[]{l} \rule{0em}{1em} \\ \rule{0em}{1em} \\ \rule{0em}{1em} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n \end{array} \right\} 作查头之用 \\
-  \left. \begin{array}[]{l}  \rule{0em}{1em} \\ \rule{0em}{1em} \end{array} \right\} 为 a_i选取真假值,i=1,\cdots,n \\
+  \left.\begin{array}[]{l} \rule[-0.5em]{0em}{2em} \\ \rule[-0.5em]{0em}{2em} \\ \rule[-0.5em]{0em}{2em} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n \end{array} \right\} 作查头之用 \\
+  \left. \begin{array}[]{l}  \rule[-0.5em]{0em}{2em} \\ \rule[-0.5em]{0em}{2em} \end{array} \right\} 为 a_i选取真假值,i=1,\cdots,n \\
   \begin{array}[]{l}
-  \rule{0em}{1em} 当前子句已满足，观察下一子句\\  
-  \rule{0em}{1em} 当前子句尚未满足，寻求满意文字\\
-  \rule{0em}{1em} S 遍取 a_1,\cdots, a_{i-1}, a_{i+1}, \cdots, a_n,\bar a_1, \cdots, \bar a_n；不满意则右移\\
-  \rule{0em}{1em} S 遍取 a_1, \cdots, a_n,\bar a_1, \cdots, \bar a_{i-1}, \bar a_{i+1}, \cdots, \bar a_n；不满意则右移
+  \rule[-0.5em]{0em}{2em} 当前子句已满足，观察下一子句\\  
+  \rule[-0.5em]{0em}{2em} 当前子句尚未满足，寻求满意文字\\
+  \rule[-0.5em]{0em}{2em} S 遍取 a_1,\cdots, a_{i-1}, a_{i+1}, \cdots, a_n,\bar a_1, \cdots, \bar a_n；不满意则右移\\
+  \rule[-0.5em]{0em}{2em} S 遍取 a_1, \cdots, a_n,\bar a_1, \cdots, \bar a_{i-1}, \bar a_{i+1}, \cdots, \bar a_n；不满意则右移
   \end{array}\\ 
-  \left. \begin{array}[]{l} \rule{0em}{1em} \\ \rule{0em}{1em} \end{array} \right\} 发现满意文字后，装新内态 w_i^\pm\\
-  \left.\begin{array}[]{l} \rule{0em}{1em} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n \\ \rule{0em}{1em} \end{array} \right\} 标志被满足了的子句 \\
-  \left.\begin{array}[]{l} \rule{0em}{1em} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, | \\ \rule{0em}{1em} \end{array} \right\} 寻找下一个未被满足的子句 \\
-  \left. \begin{array}[]{l} \rule{0em}{1em} \\ \rule{0em}{1em} \end{array} \right\} 准备为下一个命题变元选真假值\\
-  \begin{array}[]{l} \rule{0em}{1em} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, /, |, 找输入字 x 的头 \end{array}\\
-  \left.\begin{array}[]{l} \rule{0em}{1em} \\ \rule{0em}{1em} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, | \\ \rule{0em}{1em} \\ \rule{0em}{1em} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, /, |, B  \end{array} \right\} 最后检查是否还残存/符号，即是否满足了 \\
+  \left. \begin{array}[]{l} \rule[-0.5em]{0em}{2em} \\ \rule[-0.5em]{0em}{2em} \end{array} \right\} 发现满意文字后，装新内态 w_i^\pm\\
+  \left.\begin{array}[]{l} \rule[-0.5em]{0em}{2em} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n \\ \rule[-0.5em]{0em}{2em} \end{array} \right\} 标志被满足了的子句 \\
+  \left.\begin{array}[]{l} \rule[-0.5em]{0em}{2em} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, | \\ \rule[-0.5em]{0em}{2em} \end{array} \right\} 寻找下一个未被满足的子句 \\
+  \left. \begin{array}[]{l} \rule[-0.5em]{0em}{2em} \\ \rule[-0.5em]{0em}{2em} \end{array} \right\} 准备为下一个命题变元选真假值\\
+  \begin{array}[]{l} \rule[-0.5em]{0em}{2em} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, /, |, 找输入字 x 的头 \end{array}\\
+  \left.\begin{array}[]{l} \rule[-0.5em]{0em}{2em} \\ \rule[-0.5em]{0em}{2em} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, | \\ \rule[-0.5em]{0em}{2em} \\ \rule[-0.5em]{0em}{2em} S 遍取 a_1,\cdots,a_n,\bar a_1, \cdots, \bar a_n, /, |, B  \end{array} \right\} 最后检查是否还残存/符号，即是否满足了 \\
   \end{array}
   \end{array}
   $$
